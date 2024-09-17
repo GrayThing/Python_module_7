@@ -13,7 +13,11 @@ class Shop():
     __file_name = 'products.txt'
 
     def get_products(self):
-        file = open(self.__file_name, 'r')
+        try:
+            file = open(self.__file_name, 'r')
+        except:
+            print('Файла не существует. Будет создан в процессе работы')
+            return ''
         products = file.read()
         file.close()
         return products
@@ -30,7 +34,6 @@ class Shop():
                 print(f'Продукт {product.name} уже есть в магазине')
             else:
                 self.write_file(f'Название: {product.name}, Вес: {product.weight}, Категория: {product.category}')
-
 
 
 s1 = Shop()
